@@ -176,7 +176,7 @@ export default function EditIncomeList({charname, ocid, charimgurl}: I_EditIncom
                 charname: CharIncomeDatas[idx].charname,
                 ocid: ocid,
                 worldId: CharIncomeDatas[idx].worldId,
-                charimgurl: CharIncomeDatas[idx].charimgurl,
+                charimgurl: String(charimgurl),
                 incomeData: ModifyIncomeData
             });
 

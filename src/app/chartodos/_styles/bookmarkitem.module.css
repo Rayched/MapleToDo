@@ -59,13 +59,50 @@
     };
 }
 
-/*북마크 아이템, 스케줄러 데이터 box*/
+/*북마크 아이템, 전체 스케줄러 데이터 box*/
 .bookmarkitem_scheduledatabox {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     width: 70%;
     height: 100%;
+}
+
+/*스케줄러 데이터 box*/
+.bookmarkitem_scheduledata {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 30%;
+    margin: 2px 0px;
+    background-color: lightgray;
+
+    .bookmarkitem_scheduledata_titles {
+        width: 100%;
+        font-size: 14px;
+        font-weight: bold;
+    };
+
+    .bookmarkitem_scheduledata_bodys {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 14px;
+
+        .scheduledata_item {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            
+            label {
+                font-weight: bold;
+            }
+        };
+    };
 }
 
 /*북마크 삭제 버튼 관련 css code*/

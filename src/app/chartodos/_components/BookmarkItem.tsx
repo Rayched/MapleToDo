@@ -5,6 +5,7 @@ import styles from "../_styles/bookmarkitem.module.css";
 import { useStore } from "zustand";
 import { BookmarkStore } from "@/stores/BookmarkStore";
 import { BossContentsType, ContentsType } from "@/game_datas/Fetchs";
+import { useEffect, useState } from "react";
 
 interface I_BookmarkItem {
     charname: string;
@@ -26,13 +27,8 @@ export default function BookmarkItem({
     const router = useRouter();
     const {DeleteBookmark} = useStore(BookmarkStore);
 
-    const DailyContentsFilter = (
-        daily_contents ? daily_contents.filter((data) => data.registration_flag === "true") : null
-    );
-
-    const WeeklyContentsFilter = (
-        weekly_contents ? weekly_contents.filter((data) => data.registration_flag === "true") : null
-    );
+    const [DailyContentsList, setDailyContentsList] = useState();
+    const [WeeklyContentsList, setWeeklyContentsList] = useState();
 
     const RedirectCharpage = () => {
         if(isEditMode){
@@ -65,27 +61,9 @@ export default function BookmarkItem({
                     </div>
                 </div>
                 <div className={styles.bookmarkitem_scheduledatabox}>
-                    <div>
-                        <div>일일 및 주간 컨텐츠</div>
-                        <div>
-                            <span>일일 컨텐츠 개수</span>
-                            <span>
-                                <span>{DailyContentsFilter?.length}</span>
-                            </span>
-                        </div>
-                        <div>
-                            <span>주간 컨텐츠 개수</span>
-                            <span>{WeeklyContentsFilter?.length}</span>
-                        </div>
-                    </div>
-                    <div>
-                        <span>주간 보스</span>
-                        <span>
-                            {
-                                boss_clear_count ? boss_clear_count : 0
-                            } / 12
-                        </span>
-                    </div>
+                    <div className={styles.bookmarkitem_scheduledata}></div>
+                    <div className={styles.bookmarkitem_scheduledata}></div>
+                    <div className={styles.bookmarkitem_scheduledata}></div>
                 </div>
             </div>
             {

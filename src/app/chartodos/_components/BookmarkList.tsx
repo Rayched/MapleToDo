@@ -36,13 +36,12 @@ export default function BookmarkList({AllScheduleData}: I_BookmarkList){
     const router = useRouter();
 
     const [IsEdits, setEdits] = useState(false);
-    //'편집' 버튼 클릭 여부
-    /**
+    /**편집' 버튼 클릭 여부
      * true => '캐릭터 추가'/'편집 취소' 버튼 render
      * false => '편집' 버튼 render (default)
      */
     const [InnerWidth, setInnerWidth] = useState(0);
-
+    
     const SearchCharname = () => {
         const searchparams = window.prompt("캐릭터 이름을 입력해주세요.");
 
@@ -54,6 +53,7 @@ export default function BookmarkList({AllScheduleData}: I_BookmarkList){
         }
     };
 
+    //Resize Event
     useEffect(() => {
         const WidthResized = () => {
             setInnerWidth(window.innerWidth);

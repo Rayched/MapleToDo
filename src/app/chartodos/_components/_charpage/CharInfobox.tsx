@@ -7,8 +7,6 @@ import { BookmarkStore, I_BookmarkData } from "@/stores/BookmarkStore";
 import { ViewportWidthStore } from "@/stores/ViewportStore";
 import { RegistFlagStore } from "@/stores/RegistFlagStore";
 import { useEffect, useState } from "react";
-import { getCookie, getCookies, setCookie } from "cookies-next/client";
-import useClientCookieUtils from "@/utils/cookies/ClientCookieUtils";
 
 interface I_CharInfobox {
     charname?: string;
