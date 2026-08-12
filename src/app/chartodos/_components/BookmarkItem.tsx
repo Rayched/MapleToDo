@@ -6,6 +6,19 @@ import { useStore } from "zustand";
 import { BookmarkStore } from "@/stores/BookmarkStore";
 import { BossContentsType, ContentsType } from "@/game_datas/Fetchs";
 import { useEffect, useState } from "react";
+import styled from "styled-components";
+
+const BookmarkItemDeleteBtn = styled.div`
+    width: 17px;
+    height: 17px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(255, 118, 117);
+    border: 2px solid rgb(255, 118, 117);
+    border-radius: 30px;
+`;
 
 interface I_BookmarkItem {
     charname: string;
@@ -61,22 +74,22 @@ export default function BookmarkItem({
                     </div>
                 </div>
                 <div className={styles.bookmarkitem_scheduledatabox}>
-                    <div className={styles.bookmarkitem_scheduledata}></div>
-                    <div className={styles.bookmarkitem_scheduledata}></div>
-                    <div className={styles.bookmarkitem_scheduledata}></div>
+                    {
+                        isEditMode ? (
+                            <div className={styles.bookmarkitem_scheduledatabox_header}>
+                                <div className={styles.scheduledatabox_titletext}>미리보기 편집</div>
+                                <div className={styles.scheduledatabox_deletebtnarea}>
+                                    <BookmarkItemDeleteBtn onClick={DelBtnClicked}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" fill="white" width={"13"} height={"13"}>
+                                            <path d="M55.1 73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L147.2 256 9.9 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192.5 301.3 329.9 438.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.8 256 375.1 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192.5 210.7 55.1 73.4z"/>
+                                        </svg>
+                                    </BookmarkItemDeleteBtn>
+                                </div>
+                            </div>
+                        ) : null
+                    }
                 </div>
             </div>
-            {
-                isEditMode ? (
-                    <div className={styles.bookmarkitem_deletebtn_container}>
-                        <div className={styles.bookmarkitem_deletebutton} onClick={DelBtnClicked}>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" fill="white" width={"13"} height={"13"}>
-                                <path d="M55.1 73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L147.2 256 9.9 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192.5 301.3 329.9 438.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.8 256 375.1 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192.5 210.7 55.1 73.4z"/>
-                            </svg>
-                        </div>
-                    </div>
-                ) : null
-            }
         </div>
     );
 }
