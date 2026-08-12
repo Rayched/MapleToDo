@@ -74,7 +74,6 @@ export default function BookmarkList({AllScheduleData}: I_BookmarkList){
         if(!Bookmarknames){
             return;
         };
-        console.log(Bookmarknames);
         const GetCharnames = Bookmarks.map((bookmark) => {
             const isIncludes = Bookmarknames.includes(bookmark.charname);
 
