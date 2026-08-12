@@ -9,9 +9,10 @@ import { useRouter } from "next/navigation";
 import BookmarkItem from "./BookmarkItem";
 import { WorldDatas } from "@/game_datas/contentsData";
 import { I_SchedulerData } from "@/game_datas/Fetchs";
+import { getCookie, setCookie } from "cookies-next/client";
 
 interface I_BookmarkList {
-    AllScheduleData: I_SchedulerData[];
+    AllScheduleData?: I_SchedulerData[];
 };
 
 const UtilButton = styled.div`
@@ -34,6 +35,7 @@ const UtilButton = styled.div`
 export default function BookmarkList({AllScheduleData}: I_BookmarkList){
     const {Bookmarks} = useStore(BookmarkStore);
     const router = useRouter();
+    const Bookmarknames = getCookie("mapletodos_bookmarknames");
 
     const [IsEdits, setEdits] = useState(false);
     /**편집' 버튼 클릭 여부
@@ -68,6 +70,31 @@ export default function BookmarkList({AllScheduleData}: I_BookmarkList){
         }
     }, []);
 
+    useEffect(() => {
+        if(!Bookmarknames){
+            return;
+        };
+        console.log(Bookmarknames);
+        const GetCharnames = Bookmarks.map((bookmark) => {
+            const isIncludes = Bookmarknames.includes(bookmark.charname);
+
+            if(isIncludes){
+                return null;
+            } else {
+                return bookmark.charname;
+            }
+        }).filter((data) => data !== null);
+
+        setCookie(
+            "mapletodos_bookmarknames",
+            JSON.stringify([...Bookmarknames, ...GetCharnames]),
+            {
+                path: "/chartodos",
+                maxAge: 60 * 60 * 24 * 30, //30일
+            }
+        )
+    }, []);
+
     return (
         <div className={styles.bookmarklist_container}>
             <div className={styles.bookmarklist_header}>
@@ -97,7 +124,7 @@ export default function BookmarkList({AllScheduleData}: I_BookmarkList){
                 {
                     Bookmarks.map((data, idx) => {
                         const GetWorldData = WorldDatas.find((worlds) => worlds.worldNm === data.worldname);
-                        const GetTargetScheduleData = AllScheduleData.find((scheduledata) => scheduledata.character_name === data.charname);
+                        const GetTargetScheduleData = AllScheduleData?.find((scheduledata) => scheduledata.character_name === data.charname);
 
                         return (
                             <BookmarkItem 
