@@ -134,7 +134,7 @@ export default function Charpage_CharInfobox({charname, charlevel, charclass, ch
                                     ) : null
                                 }
                                 <div>
-                                    {String(charclass).length < 6 ? `${charclass}` : null}
+                                    {String(charclass).length <= 6 ? `${charclass}` : null}
                                 </div>
                             </span>
                         </div>
