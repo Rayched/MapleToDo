@@ -21,14 +21,11 @@ export default async function Chartodos_page(){
                 />
             </div>
         );
-        
     } else {
         return (
             <div className={styles.chartodos_page_wrapper}>
-                <h4>쿠키 데이터를 가져오지 못했습니다.</h4>
+                <BookmarkList />
             </div>
         );
     }
-
-    
 }
