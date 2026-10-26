@@ -1,18 +1,35 @@
-import Link from "next/link";
-import styles from "../styles/Root.module.css";
+import ScheduleList from "@/_components/home/ScheduleList";
+import { cookies } from "next/headers";
+import styles from "../_styles/Root.module.css";
+import { BookmarkCharDataFetchs, OcidFetches } from "@/_datas/Fetches";
 
-export default function HomePage() {
-  return (
-    <div className={styles.HomeWrapper}>
-      <div className={styles.linkbox} id={styles.chartodos}>
-        <Link href={"/chartodos"}>
-          <span>메할일 목록</span>
-          <span>{`(스케줄러)`}</span>
-        </Link>
-      </div>
-      <div className={styles.linkbox} id={styles.incomes}>
-        <Link href={"/incomes"}>주간 수익</Link>
-      </div>
-    </div>
-  );
-}
+export default async function RootPage(){
+    const CookieStore = await cookies();
+    const BookmarkCookies = CookieStore.get("mapletodos_bookmarks");
+
+    if(BookmarkCookies){
+        const Bookmarknames = JSON.parse(BookmarkCookies.value);
+        console.log(Bookmarknames);
+
+        const GetSchedules = await BookmarkCharDataFetchs(Bookmarknames);
+
+        if(GetSchedules){
+            console.clear();
+            console.log(GetSchedules);
+        }
+
+        return (
+            <div className={styles.root_page_wrapper}>
+                <ScheduleList 
+                    fetch_bookmarkdata={GetSchedules}
+                />
+            </div>
+        );
+    } else {
+        return (
+            <div className={styles.root_page_wrapper}>
+                Fetch Failed
+            </div>
+        );
+    }
+};

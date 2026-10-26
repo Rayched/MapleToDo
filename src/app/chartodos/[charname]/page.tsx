@@ -1,51 +1,37 @@
-import { GetCharData, GetCharScheduleData, GetOcids } from "@/game_datas/Fetchs";
-import styles from "../_styles/_charpage/charpage.module.css";
-import Charpage_CharInfobox from "../_components/_charpage/CharInfobox";
-import ShowToDos from "../_components/_charpage/Showtodos";
+import { CharbasicDataFetches, OcidFetches, SchedulerDataFetches } from "@/_datas/Fetches";
+import styles from "../../../_styles/chartodos/chartodospage.module.css";
+import CharToDos from "@/_components/chartodos/CharToDos";
 
-interface I_Chartodos_charpage {
-    params: {
-        charname: string;
-    };
+interface I_ChartodosPage {
+    params: Promise<{charname: string}>;
 };
 
-export default async function Chartodos_charpage({params}: I_Chartodos_charpage){
-    const {charname} = await params;
+export default async function CharToDosPage({params}: I_ChartodosPage){
+    const search_name = (await params).charname;
 
-    const OcidData = await GetOcids(charname);
-    const CharData = await GetCharData(OcidData?.ocid);
-    const ScheduleData = await GetCharScheduleData(OcidData?.ocid);
+    const OcidData = await OcidFetches(search_name);
+    const CharacterData = await CharbasicDataFetches(OcidData?.ocid);
+    const ScheduleData = await SchedulerDataFetches(OcidData?.ocid);
 
-    if(ScheduleData){
-        console.log(ScheduleData);
+    if(!OcidData || !CharacterData || !ScheduleData){
+        console.clear();
+        console.log(`캐릭터 정보를 불러오지 못했습니다.`);
+        console.log(OcidData);
+        console.log(CharacterData)
+        console.log(ScheduleData)
     }
 
     return (
-        <div className={styles.charpage_wrapper}>
+        <div className={styles.chartodospage_wrapper}>
             {
-                !CharData || !ScheduleData ? (
-                    <div>캐릭터 데이터를 불러오고 있습니다...</div>
-                ) : null
+                (OcidData === null || CharacterData === null || ScheduleData === null) ? null : (
+                    <CharToDos 
+                        character_ocid={OcidData.ocid}
+                        character_basic_data={CharacterData}
+                        schedule_data={ScheduleData}
+                    />
+                )
             }
-            {
-                CharData && ScheduleData ? (
-                    <main className={styles.charpage_container}>
-                        <Charpage_CharInfobox 
-                            charname={CharData.character_name}
-                            charlevel={CharData.character_level}
-                            charclass={CharData.character_class}
-                            charimgurl={CharData.character_image}
-                            worldname={CharData.world_name}
-                        />
-                        <ShowToDos 
-                            dailycontentsdata={ScheduleData.daily_contents}
-                            bosscontentsdata={ScheduleData.boss_contents}
-                            weeklycontentsdata={ScheduleData.weekly_contents}
-                            boss_clear_count={ScheduleData.weekly_boss_clear_count}
-                        />
-                    </main>
-                ) : null
-            }           
         </div>
     );
 }

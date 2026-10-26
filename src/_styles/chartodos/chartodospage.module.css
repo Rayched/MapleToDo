@@ -1,0 +1,7 @@
+.chartodospage_wrapper {
+    width: 100dvw;
+    min-height: 85dvh;
+    max-height: 90dvh;
+    display: flex;
+    flex-direction: column;
+}

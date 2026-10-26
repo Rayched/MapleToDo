@@ -1,0 +1,63 @@
+/*root layout*/
+
+.root_layout_wrapper {
+    width: 100dvw;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.root_layout_children_area {
+    width: 100%;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*Rootlayout Header CSS Style (하위 요소 포함)*/
+.root_layout_header {
+      width: 100%;
+      min-height: 50px;
+      max-height: 50px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      color: white;
+      background-color: black;  
+}
+
+.root_layout_header_titles {
+    width: 60%;
+    padding-left: 1%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    color: white;
+    text-decoration: none;
+
+    span {
+        margin-left: 5px;
+        font-weight: 500;
+    }
+}
+
+.root_layout_footer {
+    width: 100%;
+    min-height: 5dvh;
+    max-height: 8dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+
+.root_page_wrapper {
+    width: 100%;
+    min-height: 80dvh;
+    max-height: 85dvh;
+    display: flex;
+    flex-direction: column;
+}

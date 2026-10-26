@@ -1,0 +1,10 @@
+/*flex 관련 중복 코드 제거용*/
+.flex_row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex_column {
+    display: flex;
+    flex-direction: column;
+}

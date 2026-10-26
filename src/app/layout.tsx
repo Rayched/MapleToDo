@@ -1,9 +1,9 @@
-import type { Metadata, Viewport } from "next";
-import "../styles/global.css";
-import styles from "../styles/Root.module.css";
+import { Metadata, Viewport } from "next";
+import styles from "../_styles/Root.module.css";
+import "../_styles/global.css"
+import ViewportListener from "@/_components/ViewportListener";
+import Sidebar, { SidebarOpenBtn } from "@/_components/Sidebar";
 import Link from "next/link";
-import Navigations from "@/components/navs/Navigations";
-import ViewportListener from "@/components/ViewportListener";
 
 export interface I_LayoutProps {
   children: React.ReactNode;
@@ -24,27 +24,25 @@ export const metadata: Metadata = {
   }
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html>
-      <body className={styles.Wrapper}>
-        <ViewportListener />
-        <header className={styles.header}>
-          <Link href={"/"} className={styles.Titles}>
-            <img src={"/imgs/logo/icons.png"} />
-            <span>메이플 To Do</span>
-          </Link>
-          <Navigations />
-        </header>
-        {children}
-        <footer className={styles.rootlayout_footer}>
-          Data Based on NEXON OPEN API
-        </footer>
-      </body>
-    </html>
-  );
+export default function RootLayout({children}: Readonly<{children: React.ReactNode}>){
+    return (
+        <html>
+            <body className={styles.root_layout_wrapper}>
+                <ViewportListener />
+                <div className={styles.root_layout_children_area}>
+                    <header className={styles.root_layout_header}>
+                        <Link href={"/"} className={styles.root_layout_header_titles}>
+                            <img src={"/imgs/logo/icons.ico"} />
+                            <span>메이플 To Do</span>
+                        </Link>
+                        <Sidebar />
+                    </header>
+                    {children}
+                    <footer className={styles.root_layout_footer}>
+                      Data Based on NEXON OPEN API
+                    </footer>
+                </div>
+            </body>
+        </html>
+    );
 }
