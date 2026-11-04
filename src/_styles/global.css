@@ -50,3 +50,20 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+@font-face {
+    font-family: "Noto-Sans-Kr"; 
+    src: url("/public/fonts/NotoSansKR-Regular.ttf");
+    font-weight: 100;   
+    font-style: normal;
+    font-optical-sizing: auto;
+}
+
+@font-face {
+    font-family: "Noto-Sans";
+    src: url("/public/fonts/NotoSans-Regular.ttf");
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+    font-optical-sizing: auto;
+    font-weight: 100;
+}

@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 interface I_NowWidthStore {
     NowWidth: number;
@@ -8,7 +9,18 @@ interface I_NowWidthStore {
 interface I_SidebarStore {
     SidebarOpen: boolean;
     setSidebarOpen: (value: boolean) => void;
-}
+};
+
+type UsersKeyType = {
+    Id: string;
+    Value: string;
+};
+
+interface I_KeyStore {
+    UsersKey: UsersKeyType;
+    AddUsersKey: (newValue: string) => void;
+    DeleteUsersKey: () => void;
+};
 
 /**
  * Now-Width Store
@@ -28,3 +40,29 @@ export const SidebarStore = create<I_SidebarStore>((set) => ({
     SidebarOpen: false,
     setSidebarOpen: (value) => set({SidebarOpen: value})
 }));
+
+export const KeyStore = create<I_KeyStore>()(
+    persist((set) => ({
+        UsersKey: {Id: "", Value: ""},
+        AddUsersKey: (newValue) => set((state) => {
+            const IdText = crypto.randomUUID();
+            console.log(IdText);
+
+            if(IdText === ""){
+                return {
+                    UsersKey: state.UsersKey
+                }
+            } else {
+                return {
+                    UsersKey: {Id: IdText, Value: newValue}
+                }
+            }
+        }),
+        DeleteUsersKey: () => set({
+            UsersKey: {Id: "", Value: ""}
+        })
+        
+    }), {
+        name: "mapletodo_key_store"
+    })
+);

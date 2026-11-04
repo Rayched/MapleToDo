@@ -131,7 +131,7 @@ export function NavigationBar(){
 
     return (
         <NavigationBarContainer>
-            <span onClick={() => LinkClicked("")}>메할일 목록</span>
+            <span onClick={() => LinkClicked("mapletodos")}>메할일 목록</span>
             <span onClick={() => LinkClicked("incomes")}>주간 수익</span>
         </NavigationBarContainer>
     );

@@ -6,7 +6,7 @@ interface I_ChartodosPage {
     params: Promise<{charname: string}>;
 };
 
-export default async function CharToDosPage({params}: I_ChartodosPage){
+export default async function CharnamesPage({params}: I_ChartodosPage){
     const search_name = (await params).charname;
 
     const OcidData = await OcidFetches(search_name);

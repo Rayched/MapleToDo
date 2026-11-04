@@ -9,7 +9,7 @@ import { I_CharBookmarkdata } from "@/_datas/Fetches";
 import { useStore } from "zustand";
 import { BookmarkStore } from "@/_stores/BookmarkStore";
 import ToDoItem from "./ToDoItem";
-import { extraDatas } from "@/_datas/extraData";
+import { KeyStore } from "@/_stores/Stores";
 
 interface I_FormValue {
     SearchWord: string;
@@ -146,6 +146,7 @@ const ScheduleListBox = styled.div`
 export default function ScheduleList({fetch_bookmarkdata}: I_ScheduleList){
     const [EditMode, setEditMode] = useState(false);
     const {BookmarkDatas} = useStore(BookmarkStore);
+    const {UsersKey} = useStore(KeyStore);
 
     const {register, handleSubmit} = useForm<I_FormValue>({
         defaultValues: {
