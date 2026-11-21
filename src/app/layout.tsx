@@ -1,9 +1,12 @@
 import { Metadata, Viewport } from "next";
 import styles from "../_styles/Root.module.css";
 import "../_styles/global.css"
-import ViewportListener from "@/_components/ViewportListener";
-import Sidebar, { SidebarOpenBtn } from "@/_components/Sidebar";
 import Link from "next/link";
+import {ThemeButton} from "@/_components/commons/ThemeBtn";
+import { cookies } from "next/headers";
+import { SidebarIcon } from "@/_components/commons/Icons";
+import Sidebar from "@/_components/commons/Sidebar";
+import Navs_Desktop from "@/_components/commons/desktop_navs";
 
 export interface I_LayoutProps {
   children: React.ReactNode;
@@ -24,25 +27,36 @@ export const metadata: Metadata = {
   }
 };
 
-export default function RootLayout({children}: Readonly<{children: React.ReactNode}>){
-    return (
-        <html>
-            <body className={styles.root_layout_wrapper}>
-                <ViewportListener />
-                <div className={styles.root_layout_children_area}>
-                    <header className={styles.root_layout_header}>
-                        <Link href={"/"} className={styles.root_layout_header_titles}>
-                            <img src={"/imgs/logo/icons.ico"} />
-                            <span>메이플 To Do</span>
-                        </Link>
-                        <Sidebar />
-                    </header>
-                    {children}
-                    <footer className={styles.root_layout_footer}>
-                      Data Based on NEXON OPEN API
-                    </footer>
-                </div>
-            </body>
-        </html>
-    );
+export default async function RootLayout({children}: Readonly<{children: React.ReactNode}>){
+  const cookieStore = await cookies();
+
+  const now_theme = (
+    cookieStore.get("mapletodos_theme_cookie")?.value === "Dark" 
+    ? "Dark" : "Light"
+  );
+
+  return (
+    <html data-theme={now_theme}>
+      <body className={styles.root_layout_wrapper}>
+        <header className={styles.root_layout_header}>
+          <Link href={"/"} className={styles.root_layout_header_titles}>
+            <img src={"/imgs/logo/icons.ico"} />
+            <span>메이플 To Do</span>
+          </Link>
+          <nav className={styles.root_navigations}>
+            <Navs_Desktop />
+            <div className={styles.nav_mobile}>
+              <Sidebar />
+            </div>
+          </nav>
+        </header>
+        <div className={styles.root_layout_children_area}>
+          {children}
+          <footer className={styles.root_layout_footer}>
+            Data Based on NEXON OPEN API
+          </footer>
+        </div>
+      </body>
+    </html>
+  );
 }

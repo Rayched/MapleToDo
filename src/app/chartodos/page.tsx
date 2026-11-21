@@ -1,0 +1,5 @@
+export default function ChartodosPage(){
+    return (
+        <div>스케줄러 페이지</div>
+    );
+}

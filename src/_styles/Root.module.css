@@ -1,64 +1,127 @@
 /*root layout*/
-
+/*wrapper style*/
 .root_layout_wrapper {
     width: 100dvw;
     min-height: 100dvh;
     display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    font-family: "Noto-Sans", "Noto-Sans-Kr";
-}
-
-.root_layout_children_area {
-    width: 100%;
-    min-height: 100dvh;
-    display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: flex-start;
+    overflow-x: hidden;
+    font-family: "Noto-Sans", "Noto-Sans-Kr";
+    color: var(--text-color);
+    background-color: var(--bg-color);
 }
 
-/*Rootlayout Header CSS Style (하위 요소 포함)*/
+/*header 및 header 하위 요소 style*/
 .root_layout_header {
-      width: 100%;
-      min-height: 50px;
-      max-height: 50px;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      color: white;
-      background-color: black;  
-}
-
-.root_layout_header_titles {
-    width: 60%;
-    padding-left: 1%;
+    width: 100dvw;
+    min-height: 8dvh;
+    max-height: 55px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-start;
-    color: white;
-    text-decoration: none;
+    justify-content: space-between;
+    color: var(--text-color);
+    background-color: inherit;
+    border-style: solid;
+    border-color: var(--itembox-color);
+    border-bottom-width: 3px;
 
-    span {
-        margin-left: 5px;
-        font-weight: 500;
+    a {
+        color: var(--text-color);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 17px;
     }
 }
 
-.root_layout_footer {
-    width: 100%;
-    min-height: 5dvh;
-    max-height: 8dvh;
+.root_layout_header_titles {
+    width: 22%;
+    height: 6dvh;
+    min-width: 135px;
+    max-height: 55px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
+    cursor: pointer;
+
+    img {
+        width: 28px;
+        height: 28px;
+        margin-left: 3px;
+        margin-right: 5px
+    };
+
+    span {
+        font-weight: bold;
+        font-size: clamp(17px, 2vw, 19px);
+    }
 }
 
-.root_page_wrapper {
-    width: 100%;
-    min-height: 80dvh;
-    max-height: 85dvh;
+.root_navigations {
+    width: 80%;
+    height: 6dvh;
+    max-height: 55px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+
+    @media screen and (max-width: 760px){
+        .nav_desktop {
+            display: none;
+        }
+
+        .nav_mobile {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-end;
+            width: 50%;
+            min-width: 270px;
+            margin-right: 2%;
+        }
+    }
+
+    @media screen and (min-width: 761px){
+        .nav_mobile {
+            display: none;
+        }
+
+        .nav_desktop {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-end;
+            width: 50%;
+            min-width: 270px;
+            margin-right: 2%;
+
+            .pathitem {
+                width: 25%;
+                height: 6dvh;
+                max-height: 55px;
+                margin: 0px 5px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 550;
+                font-size: clamp(15px, 1vw, 17px);
+
+                &:hover {
+                    font-weight: 600;
+                    background-color: var(--itembox-color);
+                    border-radius: 5px;
+                }
+            }
+        }
+    }
+}
+
+.root_layout_children_area {
+    width: 100dvw;
+    min-height: 90dvh;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }

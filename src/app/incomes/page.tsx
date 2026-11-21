@@ -1,7 +1,5 @@
 export default function IncomesPage(){
     return (
-        <div>
-            incomes page
-        </div>
+        <div>결정 수익 페이지</div>
     );
 }

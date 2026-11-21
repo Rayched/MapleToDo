@@ -51,6 +51,27 @@ table {
 	border-spacing: 0;
 }
 
+/*
+* 테마 변경 관련 style
+* default => Light
+*/
+:root {
+	--bg-color: rgb(241, 242, 246);
+	--text-color: rgb(10, 10, 10);
+	--itembox-color: rgb(209, 216, 224);
+	--item-color: rgb(220, 221, 225);
+}
+
+[data-theme='Dark'] {
+
+	--bg-color: rgb(20, 20, 20);
+	--text-color: rgb(245, 245, 245);
+	--itembox-color: rgb(53, 59, 72);
+	--item-color: rgb(87, 96, 111);
+	
+}
+
+/*Noto Sans Font 적용*/
 @font-face {
     font-family: "Noto-Sans-Kr"; 
     src: url("/public/fonts/NotoSansKR-Regular.ttf");

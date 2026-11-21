@@ -1,0 +1,17 @@
+/chartodos
+=> 스케줄러 목록 출력
+- 하위 페이지 /chartodos/[charname]
+* 'chartodos' page.tsx에 container render 하는데
+  container에서 사용자가 api key 등록한게 있으면 스케줄러 목록을 랜더링
+  없는 경우 api key 등록 컴포넌트를 rendering
+
+/incomes
+=> 결정 수익 페이지
+* 별도의 하위 페이지는 없음
+* 캐릭터 item 클릭 시, 팝업 형태로 결정 수익 수정 form render
+
+/notice
+=> 공지 목록 페이지
+* 썬데이 메이플을 따로 띄울까 생각했지만
+  마땅히 좋은 방법이 떠오르지 않기도 했고, 홈페이지로 들어가서
+  일일히 공지를 확인하는 것도 귀찮기 때문에 공지 확인하는 페이지를 추가
