@@ -7,6 +7,16 @@ import { DarkThemeIcon, LightThemeIcon } from "./Icons";
 import {motion} from "framer-motion";
 import { setCookie } from "cookies-next/client";
 
+interface I_ThemeBtnIconBox {
+    now_theme: string; //현재 테마
+    btn_name: string; 
+    /**
+     * 버튼 명
+     * Light Theme Button => Light
+     * Dark Theme Button => Dark
+     */
+}
+
 const Buttons = styled.div`
     width: 30px;
     height: 30px;
@@ -41,28 +51,38 @@ const MobileBtn_Container = styled.div`
         font-weight: 600;
         font-size: clamp(17px, 2vw, 19px);
     };
+`;
 
-    .themebtn {
-        width: 90%;
-        height: 40%;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        color: var(--bg-color);
-        background-color: var(--text-color);
-        border: 3px solid var(--text-color);
-        border-radius: 5px;
+const ThemeBtnVersionM = styled.div`
+    width: 80%;
+    height: 40%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid var(--text-color);
+    border-radius: 5px;
+
+    :nth-child(1){
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
     };
+    :nth-child(2){
+        border-left-width: 2px;
+        border-style: solid;
+        border-color: var(--text-color);
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+    };
+`;
 
-    span {
-        width: 45%;
-        font-weight: 600;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: clamp(17px, 2vw, 19px);
-    }
+const ThemeBtnIconBox = styled.div<I_ThemeBtnIconBox>`
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: ${(props) => props.now_theme === props.btn_name ? `var(--item-color)` : `var(--bg-color)`};
 `;
 
 export function ThemeButton(){
@@ -122,24 +142,22 @@ export function ThemeButton_mobile(){
     return (
         <MobileBtn_Container>
             <label>테마 변경</label>
-            <div className="themebtn" onClick={ThemebtnClicked}>
-                {
-                    NowTheme === "Light" ? (
-                        <DarkThemeIcon 
-                            w_value={35}
-                            h_value={35}
-                            icon_color="white"
-                        />
-                    ) : (
-                        <LightThemeIcon 
-                            w_value={35}
-                            h_value={35}
-                            icon_color="black"
-                        />
-                    )
-                }
-                <span>{NowTheme === "Dark" ? "Light" : "Dark"}</span>
-            </div>
+            <ThemeBtnVersionM onClick={ThemebtnClicked}>
+                <ThemeBtnIconBox now_theme={NowTheme} btn_name="Light">
+                    <LightThemeIcon 
+                        w_value={25}
+                        h_value={25}
+                        icon_color="var(--text-color)"
+                    />
+                </ThemeBtnIconBox>
+                <ThemeBtnIconBox now_theme={NowTheme} btn_name="Dark">
+                    <DarkThemeIcon 
+                        w_value={25}
+                        h_value={25}
+                        icon_color="var(--text-color)"
+                    />
+                </ThemeBtnIconBox>
+            </ThemeBtnVersionM>
         </MobileBtn_Container>
     );
 }

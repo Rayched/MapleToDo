@@ -11,7 +11,7 @@ type PathDataType = {
     pathname: string;
 };
 
-const PathData: PathDataType[] = [
+export const PathData: PathDataType[] = [
     {pathvalue: "/chartodos", pathname: "스케줄러"},
     {pathvalue: "/incomes", pathname: "결정 수익"},
     {pathvalue: "/notice", pathname: "공지 목록"}
