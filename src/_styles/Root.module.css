@@ -38,7 +38,6 @@
 .root_layout_header_titles {
     width: 22%;
     height: 6dvh;
-    min-width: 135px;
     max-height: 55px;
     display: flex;
     align-items: center;
@@ -48,14 +47,23 @@
     img {
         width: 28px;
         height: 28px;
-        margin-left: 3px;
-        margin-right: 5px
+        margin-right: 5px;
     };
 
-    span {
-        font-weight: bold;
-        font-size: clamp(17px, 2vw, 19px);
-    }
+    /*Mobile 화면용*/
+    @media screen and (max-width: 760px){ 
+        span {
+            display: none
+        };
+    };
+
+    /*Desktop 화면용*/
+    @media screen and (min-width: 761px){
+        span {
+            font-weight: bold;
+            font-size: clamp(17px, 2vw, 19px);
+        }
+    };
 }
 
 .root_navigations {
@@ -106,7 +114,7 @@
                 align-items: center;
                 justify-content: center;
                 font-weight: 550;
-                font-size: clamp(15px, 1vw, 17px);
+                font-size: clamp(18px, 2vw, 20px);
 
                 &:hover {
                     font-weight: 600;
