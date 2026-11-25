@@ -4,7 +4,6 @@ import "../_styles/global.css"
 import Link from "next/link";
 import {ThemeButton} from "@/_components/commons/ThemeBtn";
 import { cookies } from "next/headers";
-import { SidebarIcon } from "@/_components/commons/Icons";
 import Sidebar from "@/_components/commons/Sidebar";
 import Navs_Desktop from "@/_components/commons/desktop_navs";
 
@@ -52,10 +51,10 @@ export default async function RootLayout({children}: Readonly<{children: React.R
         </header>
         <div className={styles.root_layout_children_area}>
           {children}
-          <footer className={styles.root_layout_footer}>
-            Data Based on NEXON OPEN API
-          </footer>
         </div>
+        <footer className={styles.root_layout_footer}>
+          Data Based on NEXON OPEN API
+        </footer>
       </body>
     </html>
   );

@@ -1,0 +1,13 @@
+/**
+* Project 내 모든 page.tsx 파일
+* 공통으로 적용할 css style code's
+*/
+
+/*page component, 최상위 요소 style*/
+.pages_wrapper {
+    width: 100dvw;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
