@@ -27,9 +27,9 @@ const PathMatchItem = styled.div`
     max-height: 55px;
     margin: 0px 5px;
     font-weight: 600;
-    font-size: clamp(15px, 1vw, 17px);
+    font-size: clamp(15px, 1vw, 16px);
     border-radius: 5px;
-    background-color: var(--item-color);
+    background-color: var(--itembox-color);
 `;
 
 export default function Navs_Desktop(){

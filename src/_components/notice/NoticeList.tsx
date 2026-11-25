@@ -2,13 +2,12 @@
 
 import { I_Notice, I_NoticeEvent } from "@/_fetchs/GetNotice";
 import styles from "../../_styles/notice/notice_page.module.css";
-import Link from "next/link";
-import { useState } from "react";
 import styled from "styled-components";
 import { PlusIcon } from "../commons/Icons";
 
 interface I_NoticeListProps {
     noticeData?: I_Notice[];
+    noticebox_Id: string;
     titleText: string;
     //Box 제목 텍스트
 };
@@ -24,15 +23,9 @@ const ViewMoreNoticeBtn = styled.div`
     top: 3px;
 `;
 
-export default function NoticeList({noticeData, titleText}: I_NoticeListProps){
-    const [ShowMores, setShowMores] = useState(false);
-    //나머지 공지 더보기 여부
-    /**
-     * true 시 화면 정중앙에 팝업 형태로 render
-     */
-
+export default function NoticeList({noticeData, titleText, noticebox_Id}: I_NoticeListProps){
     return (
-        <div className={styles.notice_list_box}>
+        <div key={noticebox_Id} className={styles.notice_list_box}>
             <h4 className={styles.notice_list_title}>
                 {titleText}
                 <ViewMoreNoticeBtn>
