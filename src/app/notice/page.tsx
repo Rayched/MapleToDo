@@ -17,29 +17,11 @@ export default async function NoticePage(){
     return (
         <div className={CommonStyle.page_wrapper}>
             {
-                NoticeData ? (
+                NoticeData && NoticeUpdateData && NoticeEventData ? (
                     <NoticeList 
-                        noticebox_Id="notice"
-                        titleText="공지 목록"
                         noticeData={NoticeData.notice}
-                    />
-                ) : null
-            }
-            {
-                NoticeUpdateData ? (
-                    <NoticeList 
-                        noticebox_Id="notice_update"
-                        titleText="업데이트 목록"
-                        noticeData={NoticeUpdateData.update_notice}
-                    />
-                ) : null
-            }
-            {
-                NoticeEventData ? (
-                    <NoticeList 
-                        noticebox_Id="notice_event"
-                        titleText="진행 중 이벤트 목록"
-                        noticeData={NoticeEventData.event_notice}
+                        updateData={NoticeUpdateData.update_notice}
+                        eventData={NoticeEventData.event_notice}
                     />
                 ) : null
             }
