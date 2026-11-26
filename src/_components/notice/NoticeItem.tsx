@@ -78,6 +78,7 @@ const NoticeDataItem = styled.a`
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
     color: var(--text-color);
     background-color: var(--item-color);
     text-decoration: none;
@@ -85,6 +86,7 @@ const NoticeDataItem = styled.a`
     border-radius: 5px;
     font-size: clamp(13px, 1vw, 15px);
     font-weight: 550;
+    text-align: center;
 
     &:hover {
         scale: 1.01;
