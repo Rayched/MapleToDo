@@ -17,10 +17,10 @@ interface I_NoticeListProps {
 const NoticeListContainer = styled.div`
     width: 100dvw;
     min-height: 85dvh;
+    margin-top: 1%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
 `;
 
 const NoticeDetailWrapper = styled.div`
