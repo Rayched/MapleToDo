@@ -29,6 +29,7 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
+	min-height: 100dvh;
 	line-height: 1;
 	-webkit-user-select: none; /* 사파리, 크롬 */
   	-moz-user-select: none;    /* 파이어폭스 */
@@ -36,6 +37,11 @@ body {
   	user-select: none;     /* 표준 */
 	overflow-x: hidden;
 	overflow-y: auto;
+
+	.scroll-locked {
+		overflow: hidden !important;
+		touch-action: none;
+	};
 }
 ol, ul {
 	list-style: none;

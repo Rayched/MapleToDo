@@ -6,7 +6,7 @@
 /*page component, 최상위 요소 style*/
 .pages_wrapper {
     width: 100dvw;
-    min-height: 85dvh;
+    min-height: 80dvh;
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -4,17 +4,19 @@ import styled from "styled-components";
 import { SidebarIcon } from "./Icons";
 import { useStore } from "zustand";
 import { ThemeStore } from "@/_stores/ThemeStore";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ThemeButton_mobile } from "./ThemeBtn";
 import { PathData } from "./desktop_navs";
 import { usePathname, useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 
+const Container = styled.div``;
 //Sidebar open button container
 const SidebarButton = styled.div``;
 
 const SidebarWrapper = styled.div`
     width: 100dvw;
-    height: 100dvh;
+    height: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -22,6 +24,7 @@ const SidebarWrapper = styled.div`
     position: fixed;
     top: 0;
     right: 0;
+    z-index: 2;
     background-color: rgba(0, 0, 0, 0.8);
 
     .empty_area {
@@ -31,7 +34,7 @@ const SidebarWrapper = styled.div`
     }
 `;
 
-const SidebarContainer = styled.div`
+const SidebarContainer = styled(motion.div)`
     width: 40dvw;
     height: 95dvh;
     max-width: 270px;
@@ -91,6 +94,21 @@ const PathmatchItem = styled.li`
     background-color: var(--item-color);
 `;
 
+const SidebarVariants = {
+    "initial": {
+        capacity: 0,
+        x: 40
+    },
+    "animate": {
+        capacity: 1,
+        x: 0,
+        transition: {
+            duration: 0.3,
+            delay: 0.1
+        }
+    }
+};
+
 export default function Sidebar(){
     const {NowTheme} = useStore(ThemeStore);
     const [Hide, setHide] = useState(true);
@@ -127,9 +145,20 @@ export default function Sidebar(){
             router.push(pathvalue);
         }, 100);
     };
+
+    useEffect(() => {
+        if(Hide === true) return;
+
+        const originalOverflow = document.body.style.overflow;
+        document.body.style.overflow = "hidden";
+
+        return () => {
+            document.body.style.overflow = originalOverflow;
+        }
+    }, [Hide]);
     
     return (
-        <>
+        <Container>
             <SidebarButton onClick={SidebarOpen}>
                 <SidebarIcon 
                     w_value={28}
@@ -141,7 +170,11 @@ export default function Sidebar(){
                 !Hide ? (
                     <SidebarWrapper>
                         <div className="empty_area" onClick={SidebarClose}></div>
-                        <SidebarContainer>
+                        <SidebarContainer
+                            variants={SidebarVariants}
+                            initial="initial"
+                            animate="animate"
+                        >
                             <PathItemListBox>
                                 <label>바로가기 목록</label>           
                                 <ul className="pathitemlist">
@@ -173,6 +206,6 @@ export default function Sidebar(){
                     </SidebarWrapper>
                 ) : null
             }
-        </>
+        </Container>
     );
 }
