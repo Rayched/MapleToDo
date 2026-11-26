@@ -85,6 +85,7 @@ const NoticeDataItem = styled.li`
         display: flex;
         align-items: center;
         justify-content: center;
+        text-align: center;
         font-size: clamp(13px, 1vw, 15px);
     };
 
