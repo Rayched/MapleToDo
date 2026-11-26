@@ -22,6 +22,7 @@ const NoticeItemContainer = styled.div`
     width: 95dvw;
     max-width: 735px;
     height: 40dvh;
+    max-height: 285px;
     margin: 10px 0px;
     display: flex;
     flex-direction: column;
