@@ -54,7 +54,9 @@ const NoticedataList = styled.ul`
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow-y: auto;  
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: none;
 `;
 
 const NoticeDataItem = styled.li`

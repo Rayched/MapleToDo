@@ -96,6 +96,7 @@ table {
 
 body {
 	overflow-y: overlay;
+	overscroll-behavior: none;
 }
 
 ::-webkit-scrollbar {
